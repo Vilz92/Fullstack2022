@@ -14,6 +14,6 @@
 ## 0.4: uusi muistiinpano
 [Sekvenssieditori](https://www.websequencediagrams.com/)
 
-![Sekvenssikaavio](/sekvenssi.png)
+![Sekvenssikaavio](/osa0/sekvenssi.png?raw=true)
 
 ## 
