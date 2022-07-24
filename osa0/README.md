@@ -71,6 +71,12 @@ end note
 
 Koodi:
 ```
+note over selain:
+selain ajaa spa.js-koodista form.onsubmit-funktion, jossa uusi muistiinpano
+asetetaan paikalliseen tietorakenteeseen ja näytetään käyttäjälle
+end note
 
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+palvelin-->selain: { message: "note created" }
 ```
 ![Sekvenssikaavio](/osa0/uusi_postaus_spa.png?raw=true)
