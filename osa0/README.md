@@ -41,4 +41,36 @@ end note
 
 ![Sekvenssikaavio](/osa0/uusi_postaus.png?raw=true)
 
-## 
+## 0.5 Single Page App
+
+Koodi:
+```
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+palvelin-->selain: spa.js
+
+note over selain:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+selain->palvelin: HTTP GET (xhr) https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [{ content: "HTML on helppoa", date: "2019-01-01" }, ...]
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
+```
+
+![Sekvenssikaavio](/osa0/spa.png?raw=true)
+## 0.6: Uusi muistiinpano
+
+Koodi:
+```
+
+```
+![Sekvenssikaavio](/osa0/uusi_postaus_spa.png?raw=true)
