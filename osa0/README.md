@@ -15,7 +15,7 @@
 [Sekvenssieditori](https://www.websequencediagrams.com/)
 
 Koodi:
-
+```
 selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
 palvelin-->selain: 302 to https://studies.cs.helsinki.fi/exampleapp/notes
 selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
@@ -37,6 +37,7 @@ note over selain:
 selain suorittaa tapahtumankäsittelijän
 joka renderöi muistiinpanot näytölle
 end note
+```
 
 ![Sekvenssikaavio](/osa0/uusi_postaus.png?raw=true)
 
