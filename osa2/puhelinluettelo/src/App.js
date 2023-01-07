@@ -25,13 +25,27 @@ const handleNameFilterChange = (event) => {
 const submitName = (event) => {
   event.preventDefault()
   const found = persons.find(person => person.name === newName)
+  const newPerson = { name: newName, number: newNumber }
+
   if(found) {
-    alert(`${newName} is already added to phonebook`)
-    setNewName('')
+    if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+      personService
+        .update(found.id, newPerson)
+        .then(person => {
+          const newpersons = persons.map(element => {
+            if (element.id === found.id) {
+              return person;
+            }
+            return element;
+          });
+          setPersons(newpersons)
+          setNewName('')
+          setNewNumber('')
+        })
+    }
     return
   }
 
-  const newPerson = { name: newName, number: newNumber }
   personService
     .create(newPerson)
     .then(person => {
