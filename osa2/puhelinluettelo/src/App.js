@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import Notification from './components/Notification'
 import personService from './services/persons'
 
 const App = () => {
@@ -9,6 +10,17 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [nameFilter, setNameFilter] = useState('')
+  const [message, setMessage] = useState(null)
+  const [messageType, setMessageType] = useState(null)
+
+  const showMessage = (message, type) => {
+    setMessage(message)
+    setMessageType(type)
+    setTimeout(() => {
+      setMessage(null)
+      setMessageType(null)
+    }, 5000)
+  }
 
 const handleNameChange = (event) => {
   setNewName(event.target.value)
@@ -41,6 +53,10 @@ const submitName = (event) => {
           setPersons(newpersons)
           setNewName('')
           setNewNumber('')
+          showMessage(`${newName} was replaced to the phonebook with new number!`, 'success')
+        })
+        .catch(error => {
+          showMessage(`Information of ${newName} has already removed from server`, 'error')
         })
     }
     return
@@ -53,6 +69,7 @@ const submitName = (event) => {
       setNewName('')
       setNewNumber('')
     })
+  showMessage(`${newName} was added to the phonebook!`, 'success')
 }
 
 const removePerson = id => {
@@ -63,6 +80,7 @@ const removePerson = id => {
       .remove(id)
       .then()
   }
+  showMessage(`${person.name} was deleted from the phonebook!`, 'success')
 }
 
 useEffect(() => {
@@ -77,6 +95,8 @@ const filteredPersons = persons.filter(person => person.name.toLowerCase().inclu
 
   return (
     <div>
+      <Notification message={message} type={messageType} />
+
       <h2>Phonebook</h2>
       <Filter nameFilter={nameFilter} handleNameFilterChange={handleNameFilterChange} />
 
